@@ -24,25 +24,27 @@ sr_one = df_seoul.loc['경기도']
 plt.style.use('ggplot') #ggplot 스타일 지정
 
 
-#그림 사이즈 지정
-plt.figure(figsize=(14,5))
+
+
+
+
 #x 축 눈금 라벨 회전하기
-plt.xticks(size=10,rotation = 'vertical')
+# plt.xticks(size=10,rotation = 'vertical')
 
 # 제목정함
-plt.title('서울 -> 경기 인구 이동')
+# plt.title('서울 -> 경기 인구 이동')
 
 # 축이름 추가
-plt.xlabel('기간')
-plt.ylabel('이동인구수')
+# plt.xlabel('기간')
+# plt.ylabel('이동인구수')
 
-#x 축 y 축 데이터를 plot 함수에 입력
-plt.plot(sr_one.index,sr_one.values,marker = 'o',markersize = 10)
+# #x 축 y 축 데이터를 plot 함수에 입력
+# plt.plot(sr_one.index,sr_one.values,marker = 'o',markersize = 10)
 
-plt.legend(labels=['서울 -> 경기'],loc = 'best')
+# plt.legend(labels=['서울 -> 경기'],loc = 'best')
 
 #y축 범위지정
-plt.ylim(50000,800000)
+# plt.ylim(50000,800000)
 
 # #주석표시
 
@@ -76,4 +78,29 @@ plt.annotate('인구 이동 감소(1995~2017)',
              fontsize = 15,
              )
 
+#그래프 객체 생성(figure에 2개의 서브 플롯 생성)
+fig = plt.figure(figsize=(20,5))
+ax = fig.add_subplot(1,1,1,)
+
+#axe객체에 plot함수로 그래프 출력
+ax.plot(sr_one,marker = 'o',markerfacecolor = 'orange', markersize =15,
+        color = 'olive', linewidth =2, label = '서울 -> 경기')
+
+#y축 범위 지정(최소값, 최대값)
+ax.set_ylim(50000,800000)
+
+#차트제목 추가
+ax.set_title('서울->경기 인구이동',size =20)
+
+#축 이름 추가
+ax.set_xlabel('기간',size=12)
+ax.set_ylabel('이동 인구수',size =12)
+
+#축 눈금 라벨 지정 및 75도 회전
+ax.set_xticklabels(sr_one.index,rotation = 75)
+
+# 축 눈금 라벨 크기
+ax.tick_params(axis = "x",labelsize=10)
+ax.tick_params(axis = "y",labelsize=10)
 plt.show()
+
